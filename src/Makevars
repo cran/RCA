@@ -1,0 +1,9 @@
+#
+# Makevars for RCA
+#
+
+PKGB_PATH=`echo 'library(igraph); cat(system.file("libs", package="igraph"))' \
+      | ${R_HOME}/bin/R --vanilla --slave`
+PKG_LIBS = $(PKGB_PATH)/igraph$(DYLIB_EXT)
+
+
