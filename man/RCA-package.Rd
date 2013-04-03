@@ -6,16 +6,17 @@ Relational Class Analysis
 }
 \description{
 Relational Class Analysis (RCA) is a method for
-detecting heterogeneity in attitudinal data. RCA-R is a
-C-based package that implements the RCA algorithm and
-generates a simple-to-use command line executable program.
+detecting heterogeneity in attitudinal data. 
+(as described in Goldberg A., 2011, Am. J. Soc, 116(5)) .
+src/igraph-R contains the header files of igraph-C 
+which was written by Gabor.
 }
 \details{
 \tabular{ll}{
 Package: \tab RCA\cr
 Type: \tab Package\cr
-Version: \tab 1.3.1\cr
-Date: \tab 2013-03-06\cr
+Version: \tab 1.3.3\cr
+Date: \tab 2013-03-28\cr
 License: \tab What license is it under?\cr
 LazyLoad: \tab yes\cr
 }

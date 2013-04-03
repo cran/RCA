@@ -2,9 +2,12 @@ RCA <-
 function(inputMatrix, bootstrap=1000, p_value=0.05) { 
     # If the library hasn't been loaded yet, load it 
     PKG_PATH=system.file("libs", .Platform$r_arch, package="RCA", mustWork=TRUE)
-    PKG_OBJ=paste(PKG_PATH,"RCA.so",sep="")
+    #PKG_OBJ=paste(PKG_PATH,"RCA.so",sep="/")
+    #PKG_OBJ=paste(PKG_PATH,"../../",sep="/")
+    PKG_OBJS=list.files(PKG_PATH,pattern="RCA.*",full.names=TRUE,recursive=TRUE)
     if (!is.loaded('RCA_R_wrapper')) { 
-        dyn.load(PKG_OBJ) 
+        #library.dynam("RCA","RCA",PKG_OBJ)
+        dyn.load(PKG_OBJS[1]) 
     } 
     # Call the C function. A list of parameters values after the function is called 
     # is returned, assigned to the same names as are given before the 
