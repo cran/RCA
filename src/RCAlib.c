@@ -39,22 +39,22 @@
 // The header files of igraph-C package are provided for those who can not
 // install the igraph-C package from source code. 
 
-#include "igraph-R/igraph.h"
-#include "igraph-R/igraph_community.h"
-#include "igraph-R/igraph_constructors.h"
-#include "igraph-R/igraph_memory.h"
-#include "igraph-R/igraph_random.h"
-#include "igraph-R/igraph_arpack.h"
-#include "igraph-R/igraph_adjlist.h"
-#include "igraph-R/igraph_interface.h"
-#include "igraph-R/igraph_components.h"
-#include "igraph-R/igraph_dqueue.h"
-#include "igraph-R/igraph_progress.h"
-#include "igraph-R/igraph_stack.h"
-#include "igraph-R/igraph_spmatrix.h"
-#include "igraph-R/igraph_statusbar.h"
-#include "igraph-R/igraph_conversion.h"
-#include "igraph-R/igraph_centrality.h"
+#include "igraph.h"
+#include "igraph_community.h"
+#include "igraph_constructors.h"
+#include "igraph_memory.h"
+#include "igraph_random.h"
+#include "igraph_arpack.h"
+#include "igraph_adjlist.h"
+#include "igraph_interface.h"
+#include "igraph_components.h"
+#include "igraph_dqueue.h"
+#include "igraph_progress.h"
+#include "igraph_stack.h"
+#include "igraph_spmatrix.h"
+#include "igraph_statusbar.h"
+#include "igraph_conversion.h"
+#include "igraph_centrality.h"
 
 
 #include <stdio.h>
@@ -603,7 +603,7 @@ int RCA_igraph_i_community_leading_eigenvector2_weighted(igraph_real_t *to,
     return 0;
 }
 
-void igraph_i_levc_free(igraph_vector_ptr_t *ptr) { 
+void rca_igraph_i_levc_free(igraph_vector_ptr_t *ptr) { 
     long int i, n=igraph_vector_ptr_size(ptr);
     for (i=0; i<n; i++) {
         igraph_vector_t *v=(igraph_vector_t*)VECTOR(*ptr)[i];
@@ -689,7 +689,7 @@ int RCA_igraph_community_leading_eigenvector(const igraph_t *graph,
     if (eigenvalues)  { igraph_vector_clear(eigenvalues);      }
     if (eigenvectors) { 
         igraph_vector_ptr_clear(eigenvectors); 
-        IGRAPH_FINALLY(igraph_i_levc_free, eigenvectors);
+        IGRAPH_FINALLY(rca_igraph_i_levc_free, eigenvectors);
     }
     
     IGRAPH_STATUS("Starting leading eigenvector method.\n", 0);

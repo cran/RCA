@@ -1,7 +1,10 @@
-#
-# Makevars for RCA
-#
+PKG_CFLAGS=-DUSING_R -I. -Ics -Iglpk -Iglpk/amd -Iglpk/colamd -Iplfit \
+	 -pipe -g -I/usr/include/libxml2  -pipe -g -I/usr/include/libxml2 -DNDEBUG \
+	-DPACKAGE_VERSION=\"0.6.5\" -DINTERNAL_ARPACK \
+	-DIGRAPH_THREAD_LOCAL=/**/
+CFLAGS = -g -O3 -Wall -Wno-unused -pedantic -wempty-translation-unit
+PKG_CXXFLAGS= -DUSING_R -DIGRAPH_THREAD_LOCAL=/**/ -DNDEBUG
+PKG_LIBS=-L/usr/lib -lxml2 -lgmp  $(FLIBS) $(LAPACK_LIBS) $(BLAS_LIBS)
 
-PKGB_PATH=`echo 'library(igraph); cat(system.file("libs", .Platform$$r_arch, package="igraph", mustWork=TRUE))' | ${R_HOME}/bin/R --vanilla --slave`
-PKG_LIBS="$(PKGB_PATH)/igraph.so"
+all: $(SHLIB)
 

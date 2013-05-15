@@ -9,9 +9,6 @@ function(inputMatrix, bootstrap=1000, p_value=0.05) {
         #library.dynam("RCA","RCA",PKG_OBJ)
         dyn.load(PKG_OBJS[1]) 
     } 
-    # Call the C function. A list of parameters values after the function is called 
-    # is returned, assigned to the same names as are given before the 
-    # = signs in the arguments. 
     # Change 2D matrix data to 1D data
 	Dim=dim(inputMatrix) # Dim=[row,col]
 	inputData=double(Dim[1]*Dim[2])

@@ -3,13 +3,12 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Relational Class Analysis
-%%  ~~function to do ... ~~
 }
 \description{
 Relational Class Analysis (RCA) is a method for
 detecting heterogeneity in attitudinal data. 
 (as described in Goldberg A., 2011, Am. J. Soc, 116(5)) .
-src/igraph-R contains the header files of igraph-C
+src also contains the source files of igraph-C
 which was written by Gabor.
 }
 \usage{
@@ -29,27 +28,48 @@ RCA(inputMatrix, bootstrap = 1000, p_value = 0.05)
 }
 }
 \details{
-This is a R function using the C implementation of Relational Class Analysis (RCA).
+%This is a R function using the C implementation of Relational Class Analysis (RCA).
 
 Let X be a dataset of size N x K. X must not include missing data.
 RCA finds an optimal division of X into G groups, such that each group
-of observations follows a distinctive pattern of raltionships between the
-K variables. Group assignment is reported as a vector M. Modulairty, Q,
-measures the strength of the division into groups.
+of observations follows a distinctive pattern of relationships between the
+K variables. Each group comprises an exclusive subset of X, such that the K variables within each group have a unique covariance structure. 
 
-RCA-R is a C-based package that implements the RCA algorithm and generates
-a simple-to-use command line executable program.
-You will need to follow the steps below in order to compile the RCA-R code
-and generate a local copy of the executable.
+%Group assignment is reported as a vector M. Modulairty, Q, measures the strength of the division into groups.
+
+RCA divides X into a variable number of G groups, assigning each observation in X to one group. It reports a measure called modularity, which ranges from 0 to 1 and which measures the strength of the division into groups. It also reports a cluster tree which traces the process by which the data were partitioned into G groups. 
+
+%RCA-R is a C-based package that implements the RCA algorithm and generates a simple-to-use command line executable program. You will need to follow the steps below in order to compile the RCA-R code and generate a local copy of the executable.
 
 }
 \value{
 Results include:
 
-a. [your_returned_data]$member: Assignment vector (size 1xN)
-b. [your_returned_data]$mod: Modularity (double)
-c. [your_returned_data]$merge: Merge tree (array of varying size)
-d. [your_returned_data]$stats: Stats (2 doubles)
+\item{}{[your_returned_data]$member: Assignment vector (size 1xN)
+
+Each cell in the vector includes the group number the corresponding observation was assigned to. Group numbers range from 0 to G-1. 
+
+}
+
+\item{}{[your_returned_data]$mod: Modularity (double)
+
+A number ranging from 0 to 1 indicating the strength of the partition into groups. 
+
+}
+
+\item{}{[your_returned_data]$merge: 
+
+Cluster tree, reported as a merge matrix (array of varying size). See igraph/leading.eigenvector.community for more information. 
+
+}
+
+\item{}{[your_returned_data]$stats: Stats (2 doubles)}
+
+%Amir Goldberg April 12, 2013 10:46 PM: Please add a new line after each of the numbered items. Change the text as follows:
+%a. [your_returned_data]$member: assignment vector (size 1xN). 
+%b. [your_returned_data]$mod: Modularity (double). 
+%c. [your_returned_data]$merge: 
+
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}
@@ -59,7 +79,7 @@ d. [your_returned_data]$stats: Stats (2 doubles)
 \references{
 Goldberg, A., AJS 116(5): 1397-1436 (http://http://www.jstor.org/stable/10.1086/657976)}
 \author{
-Amir Goldberg, Jinjian Zhai, Gabor Csardi
+Amir Goldberg, Gabor Csardi, Jinjian Zhai
 }
 \note{
 Depended on igraph library.
@@ -81,9 +101,6 @@ function(inputMatrix, bootstrap=1000, p_value=0.05) {
     if (!is.loaded('RCA_R_wrapper')) { 
         dyn.load('RCA.so') 
     } 
-    # Call the C function. A list of parameters values after the function is called 
-    # is returned, assigned to the same names as are given before the 
-    # = signs in the arguments. 
     # Change 2D matrix data to 1D data
 	Dim=dim(inputMatrix) # Dim=[row,col]
 	inputData=double(Dim[1]*Dim[2])
@@ -93,8 +110,11 @@ function(inputMatrix, bootstrap=1000, p_value=0.05) {
         }
     }
     # Calling RCA-R function
-    returned_data = .C('RCA_R_wrapper', inputData=inputData, numObs=as.integer(Dim[1]), numVars=as.integer(Dim[2]), bootstrap=as.integer(bootstrap), z_score=as.double(qnorm(1-p_value/2)), member=integer(Dim[1]), mergeDim=integer(2), mod=as.double(0), stats=double(2), merge=matrix(0,1,1) )
-    # get membership tag one by one because it is too big an array for R to handle at the same time. 
+    returned_data = .C('RCA_R_wrapper', inputData=inputData, numObs=as.integer(Dim[1])
+		, numVars=as.integer(Dim[2]), bootstrap=as.integer(bootstrap), 
+		z_score=as.double(qnorm(1-p_value/2)), member=integer(Dim[1]), mergeDim=integer(2), 
+		mod=as.double(0), stats=double(2), merge=matrix(0,1,1) )
+    # get membership tag one by one because it is too big for R to handle at the same time. 
     for(i in 0:(Dim[1]-1)){
         each=.C('get', i=as.integer(i), element=as.integer(1))
         returned_data$member[i+1]=each$element
