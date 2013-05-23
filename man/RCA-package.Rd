@@ -8,34 +8,40 @@ Relational Class Analysis
 Relational Class Analysis (RCA) is a method for
 detecting heterogeneity in attitudinal data. 
 (as described in Goldberg A., 2011, Am. J. Soc, 116(5)) .
-src/igraph-R contains the header files of igraph-C 
+src also contains the source files of igraph-C 
 which was written by Gabor.
 }
 \details{
 \tabular{ll}{
 Package: \tab RCA\cr
 Type: \tab Package\cr
-Version: \tab 1.3.3\cr
-Date: \tab 2013-03-28\cr
-License: \tab What license is it under?\cr
+Version: \tab 1.4\cr
+Date: \tab 2013-05-15\cr
+License: \tab GPL\cr
 LazyLoad: \tab yes\cr
 }
-~~ An overview of how to use the package, including the most important ~~
-~~ functions ~~
 }
 \author{
-Amir Goldberg
-igraph header files: Gabor Csardi
-Maintainer: Jinjian Zhai
+RCA C Library: Amir Goldberg
+
+igraph : Gabor Csardi
+
+R Wrapper: Jinjian Zhai
 }
 \references{
-The src contains some header files of igraph-C package. 
+Goldberg A., 2011, Am. J. Soc. 116(5) 
 }
 \keyword{ statistics, R }
 \seealso{
 igraph
 }
 \examples{
-## attach("RCA/data/SampleInputMatrix.rda")
-## Result=RCA(SampleInputMatrix, 100, 0.075)
+#attach("../data/SampleInputMatrix.rda")
+#rcaout=RCA(SampleInputMatrix, 100, 0.075)
+#rcaout$mod
+#table(rcaout$member)
+#rcaout$merge
+#rcaout<-RCA(SampleInputMatrix,1000,0.25)
+#rcaout$mod
+#table(rcaout$member)
 }
