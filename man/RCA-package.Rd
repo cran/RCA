@@ -15,8 +15,8 @@ which was written by Gabor.
 \tabular{ll}{
 Package: \tab RCA\cr
 Type: \tab Package\cr
-Version: \tab 1.4\cr
-Date: \tab 2013-05-15\cr
+Version: \tab 1.4.1\cr
+Date: \tab 2013-05-24\cr
 License: \tab GPL\cr
 LazyLoad: \tab yes\cr
 }
