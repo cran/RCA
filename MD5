@@ -1,4 +1,4 @@
-0a9a5b83c7dd30a6c52de1932bf12896 *DESCRIPTION
+cb604e82e15fab848de9f9375e06590e *DESCRIPTION
 75e1ff61ee8d08f680a2ac78cb27fdc9 *NAMESPACE
 b9479b4b8b7eb31a396e459b1928e025 *R/RCA.R
 8f8ff0f6358121baaa5bcc7f4c4d9dad *configure
@@ -6,6 +6,7 @@ ec0d68ca48487df61d52dc64e6b98b1e *configure.in
 d41d8cd98f00b204e9800998ecf8427e *configure.win
 6c89f5ef7882843c99253e537249a8f1 *data/Result.rda
 55fbb005e948e6115964ca7eb62b7631 *data/SampleInputMatrix.rda
+2db4521d6ef765c640064fd27278831f *inst/AUTHORS
 d03ddefca0314ce9fb65c7cbbaa40f1a *man/RCA-package.Rd
 e0a3712724f502a787054f0b3ced1dd2 *man/RCA.Rd
 f984e62240e4e5a98aab2e1f9ccf6cba *man/Result.Rd
@@ -19,7 +20,6 @@ fc67113e1f6fbfdcda59cf39aab3ff00 *src/DensityGrid_3d.cpp
 5cfb53cff37ca7d43a52db4f8e44ba94 *src/DensityGrid_3d.h
 b7e28bfbaa40e1e5b3f19bfe3119834d *src/Light.cpp
 fc1ac41ed58e82e6d592e35d9f832e99 *src/Light.h
-760a7807cfc7f8d33ff1f71802e0d76e *src/Makevars
 db46763d3df8b7525773afc935144468 *src/Makevars.in
 e0d01da494bcf529c2cf62ba1a3c699e *src/Makevars.win
 47ce39714f6f9d6ec3bd7c91624d87f4 *src/NetDataTypes.cpp
